@@ -1,0 +1,612 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     20207,        604]
+NotebookOptionsPosition[     16976,        550]
+NotebookOutlinePosition[     17313,        565]
+CellTagsIndexPosition[     17270,        562]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Numeric Integration", "Section",ExpressionUUID->"37db1e9b-4ef5-4406-85cd-aaf1ee689c0a"],
+
+Cell[CellGroupData[{
+
+Cell["Left and Right Hand Rules", "Subsection",ExpressionUUID->"385d6cd1-5436-454d-96d6-39b2d0d5117d"],
+
+Cell[TextData[{
+ "One way is to use the fact that an integral is defined as a Riemann sum. \
+The ",
+ StyleBox["left-hand rule",
+  FontSlant->"Italic"],
+ ":"
+}], "Text",
+ CellChangeTimes->{{3.8268048319906893`*^9, 
+  3.826804857276291*^9}},ExpressionUUID->"a1709ed3-8fef-464f-984c-\
+fd89bbb23186"],
+
+Cell[TextData[{
+ " ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{
+     SubsuperscriptBox["\[Integral]", "a", "b"], 
+     RowBox[{
+      RowBox[{"f", "(", "x", ")"}], 
+      RowBox[{"\[DifferentialD]", "x"}]}]}], "\[TildeTilde]", 
+    RowBox[{
+     UnderoverscriptBox["\[Sum]", 
+      RowBox[{"i", "=", "1"}], "n"], 
+     RowBox[{
+      RowBox[{"f", "(", 
+       SubscriptBox["x", 
+        RowBox[{"i", "-", "1"}]], ")"}], "h"}]}]}], TraditionalForm]],
+  ExpressionUUID->"493ca5b0-4406-448d-86e3-14b7735cb38f"]
+}], "Text",
+ TextAlignment->-0.5,ExpressionUUID->"2369d3f4-0a79-4696-ad68-473943452ec5"],
+
+Cell[TextData[{
+ "For the function ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{"f", "(", "x", ")"}], "=", 
+    RowBox[{
+     SuperscriptBox["e", "x"], "+", 
+     RowBox[{"3", "x"}]}]}], TraditionalForm]],ExpressionUUID->
+  "3d769d4e-a98b-4cbb-8198-41ddc2df3bbe"],
+ ", ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"a", "=", "1"}], TraditionalForm]],ExpressionUUID->
+  "4c3931f2-777f-4116-a71e-66109bc43114"],
+ ", ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"b", "=", "3"}], TraditionalForm]],ExpressionUUID->
+  "bc187a0a-0583-40ce-8f64-5ff50a22644f"],
+ ", and ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"n", "=", "10"}], TraditionalForm]],ExpressionUUID->
+  "ad84ae87-a277-44de-849e-d26c71d550e6"],
+ ", we can implement this with loops as follows:"
+}], "Text",ExpressionUUID->"faf0fd0a-a910-45e6-ad74-95b9be6a042b"],
+
+Cell[BoxData[{
+ RowBox[{"Clear", "[", "x", "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"f", "[", "x_", "]"}], ":=", 
+  RowBox[{
+   RowBox[{"Exp", "[", "x", "]"}], "+", 
+   RowBox[{"3", "*", "x"}]}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"a", "=", "1"}], ";", 
+  RowBox[{"b", "=", "3"}], ";", 
+  RowBox[{"n", "=", "10"}], ";", 
+  RowBox[{"h", "=", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{"b", "-", "a"}], ")"}], "/", "n"}]}], ";", 
+  RowBox[{"sum", "=", "0"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Do", "[", 
+  RowBox[{
+   RowBox[{"sum", "=", 
+    RowBox[{"sum", "+", 
+     RowBox[{
+      RowBox[{"f", "[", 
+       RowBox[{"a", "+", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"i", "-", "1"}], ")"}], "*", "h"}]}], "]"}], "*", "h"}]}]}],
+    ",", 
+   RowBox[{"{", 
+    RowBox[{"i", ",", "1", ",", "n"}], "}"}]}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"N", "[", "sum", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"N", "[", 
+  RowBox[{"Integrate", "[", 
+   RowBox[{
+    RowBox[{"f", "[", "x", "]"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"x", ",", "a", ",", "b"}], "}"}]}], "]"}], "]"}]}], "Input",
+ CellLabel->"In[1]:=",ExpressionUUID->"20f3e735-9fe7-4adb-a021-d0c631bfcff5"],
+
+Cell[TextData[{
+ "Notice how the value we get is only approximate. The first number is what \
+we get from the left hand rule. The second number is what we get from \
+evaluating the integral symbolically first, and then converting that to a \
+decimal answer.  We've seen the power of ",
+ StyleBox["N",
+  FontFamily->"Courier New"],
+ " before, so we can expect the second number to be very close to the true \
+answer.\n"
+}], "Text",
+ CellChangeTimes->{
+  3.7959059355004396`*^9},ExpressionUUID->"ed4e3659-d4a3-4a83-9611-\
+8e0af517a6fc"],
+
+Cell[TextData[{
+ "We can use the ",
+ StyleBox["right-hand rule",
+  FontSlant->"Italic"],
+ " to get similar results:"
+}], "Text",ExpressionUUID->"b210f9fc-5881-4131-a2d5-e35b5d992eee"],
+
+Cell[TextData[{
+ " ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{
+     SubsuperscriptBox["\[Integral]", "a", "b"], 
+     RowBox[{
+      RowBox[{"f", "(", "x", ")"}], 
+      RowBox[{"\[DifferentialD]", "x"}]}]}], "\[TildeTilde]", 
+    RowBox[{
+     UnderoverscriptBox["\[Sum]", 
+      RowBox[{"i", "=", "1"}], "n"], 
+     RowBox[{
+      RowBox[{"f", "(", 
+       SubscriptBox["x", "i"], ")"}], "h"}]}]}], TraditionalForm]],
+  ExpressionUUID->"29c763ff-111e-44a3-8611-2f7e14c7c611"]
+}], "Text",
+ TextAlignment->-0.5,ExpressionUUID->"6d6fdec4-11ab-4dcc-ab85-55e36c4b933e"],
+
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{{3.795906046304352*^9, 
+  3.795906047505089*^9}},ExpressionUUID->"cbdc597f-524b-4a87-aa53-\
+b0e3c4b60d83"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"sum", "=", "0"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Do", "[", 
+  RowBox[{
+   RowBox[{"sum", "=", 
+    RowBox[{"sum", "+", 
+     RowBox[{
+      RowBox[{"f", "[", 
+       RowBox[{"a", "+", 
+        RowBox[{"i", "*", "h"}]}], "]"}], "*", "h"}]}]}], ",", 
+   RowBox[{"{", 
+    RowBox[{"i", ",", "1", ",", "n"}], "}"}]}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"N", "[", "sum", "]"}]}], "Input",
+ CellChangeTimes->{{3.795905947591086*^9, 3.7959059501951237`*^9}, {
+  3.7959060448452873`*^9, 3.795906045603595*^9}},
+ CellLabel->"In[13]:=",ExpressionUUID->"40c8718d-2b8d-469b-8863-202b3c57da26"],
+
+Cell[TextData[{
+ "We can use the mid-point",
+ StyleBox[" rule",
+  FontSlant->"Italic"],
+ " to get result:"
+}], "Text",
+ CellChangeTimes->{{3.795905967058404*^9, 
+  3.795905987465111*^9}},ExpressionUUID->"c0806990-ecbf-40f9-9a00-\
+b4931ec8b255"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"sum", "=", "0"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Do", "[", 
+  RowBox[{
+   RowBox[{"sum", "=", 
+    RowBox[{"sum", "+", 
+     RowBox[{
+      RowBox[{"f", "[", 
+       RowBox[{"a", "+", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"2", "i"}], "-", "1"}], ")"}], "*", 
+         RowBox[{"h", "/", "2"}]}]}], "]"}], "*", "h"}]}]}], ",", 
+   RowBox[{"{", 
+    RowBox[{"i", ",", "1", ",", "n"}], "}"}]}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"N", "[", "sum", "]"}]}], "Input",
+ CellChangeTimes->{{3.795906009149767*^9, 3.795906059112123*^9}},
+ CellLabel->"In[16]:=",ExpressionUUID->"14c0d07e-75f9-4e59-9094-4a050a0bc5a6"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Trapezoidal Rule", "Subsection",ExpressionUUID->"c5df2016-24df-4f68-a59b-b4afb46bf7af"],
+
+Cell[TextData[{
+ "A slightly better method is to average the left-hand and right-hand rules \
+to get the ",
+ StyleBox["trapezoidal rule",
+  FontSlant->"Italic"],
+ ", described on page 421 of your textbook (532 of the ebook):"
+}], "Text",ExpressionUUID->"162c9dcf-2d94-450c-899d-c33fe6230298"],
+
+Cell[TextData[{
+ " ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{
+     SubsuperscriptBox["\[Integral]", "a", "b"], 
+     RowBox[{
+      RowBox[{"f", "(", "x", ")"}], 
+      RowBox[{"\[DifferentialD]", "x"}]}]}], "\[TildeTilde]", 
+    RowBox[{
+     RowBox[{
+      FractionBox[
+       RowBox[{
+        RowBox[{"f", "(", "a", ")"}], "+", 
+        RowBox[{"f", 
+         RowBox[{"(", "b", ")"}]}]}], "2"], "h"}], "+", 
+     RowBox[{
+      UnderoverscriptBox["\[Sum]", 
+       RowBox[{"i", "=", "1"}], 
+       RowBox[{"n", "-", "1"}]], 
+      RowBox[{
+       RowBox[{"f", "(", 
+        SubscriptBox["x", "i"], ")"}], "h"}]}]}]}], TraditionalForm]],
+  ExpressionUUID->"96008625-9d77-490b-9afb-7c2929d58341"]
+}], "Text",
+ TextAlignment->-0.5,ExpressionUUID->"fe89413f-e523-46ba-99a7-903a58be5997"],
+
+Cell["Computing this with loops is roughly the same complexity:", "Text",ExpressionUUID->"9322ec56-5701-476e-9675-a08da7960354"],
+
+Cell[BoxData[{
+ RowBox[{"Clear", "[", "x", "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"f", "[", "x_", "]"}], ":=", 
+  RowBox[{
+   RowBox[{"Exp", "[", "x", "]"}], "+", 
+   RowBox[{"3", "*", "x"}]}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"a", "=", "1"}], ";", 
+  RowBox[{"b", "=", "3"}], ";", 
+  RowBox[{"n", "=", "10"}], ";", 
+  RowBox[{"h", "=", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{"b", "-", "a"}], ")"}], "/", "n"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"sum", "=", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"f", "[", "a", "]"}], "+", 
+      RowBox[{"f", "[", "b", "]"}]}], ")"}], "*", 
+    RowBox[{"h", "/", "2"}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Do", "[", 
+  RowBox[{
+   RowBox[{"sum", "=", 
+    RowBox[{"sum", "+", 
+     RowBox[{
+      RowBox[{"f", "[", 
+       RowBox[{"a", "+", 
+        RowBox[{"i", "*", "h"}]}], "]"}], "*", "h"}]}]}], ",", 
+   RowBox[{"{", 
+    RowBox[{"i", ",", "1", ",", 
+     RowBox[{"n", "-", "1"}]}], "}"}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"N", "[", "sum", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"N", "[", 
+  RowBox[{"Integrate", "[", 
+   RowBox[{
+    RowBox[{"f", "[", "x", "]"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"x", ",", "a", ",", "b"}], "}"}]}], "]"}], "]"}]}], "Input",
+ CellLabel->"In[19]:=",ExpressionUUID->"fa8e097e-45cb-40a7-9ca2-9b2141180adc"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Simpson's Rule", "Subsection",ExpressionUUID->"39686646-93cc-423c-95cc-8e2153f27ce5"],
+
+Cell[TextData[{
+ "We can get an even better approximation by using ",
+ StyleBox["Simpson's rule",
+  FontSlant->"Italic"],
+ ", which is given on page 426 of your textbook (537 of the ebook):"
+}], "Text",ExpressionUUID->"48f91aa1-637b-4e1c-99d2-f03778cdaee7"],
+
+Cell[TextData[{
+ " ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{
+     SubsuperscriptBox["\[Integral]", "a", "b"], 
+     RowBox[{
+      RowBox[{"f", "(", "x", ")"}], 
+      RowBox[{"\[DifferentialD]", "x"}]}]}], "\[TildeTilde]", 
+    RowBox[{
+     RowBox[{
+      FractionBox[
+       RowBox[{
+        RowBox[{"f", "(", "a", ")"}], "+", 
+        RowBox[{"f", 
+         RowBox[{"(", "b", ")"}]}]}], "3"], "h"}], "+", 
+     RowBox[{
+      UnderoverscriptBox["\[Sum]", 
+       RowBox[{"i", "=", "1"}], 
+       RowBox[{"n", "/", "2"}]], 
+      RowBox[{
+       RowBox[{"f", "(", 
+        SubscriptBox["x", 
+         RowBox[{
+          RowBox[{"2", "i"}], "-", "1"}]], ")"}], 
+       FractionBox[
+        RowBox[{"4", "h"}], "3"]}]}], "+", 
+     RowBox[{
+      UnderoverscriptBox["\[Sum]", 
+       RowBox[{"i", "=", "1"}], 
+       RowBox[{
+        RowBox[{"n", "/", "2"}], "-", "1"}]], 
+      RowBox[{
+       RowBox[{"f", "(", 
+        SubscriptBox["x", 
+         RowBox[{"2", "i"}]], ")"}], 
+       FractionBox[
+        RowBox[{"2", "h"}], "3"]}]}]}]}], TraditionalForm]],ExpressionUUID->
+  "876ee5bb-1c92-46cf-a5a0-043886079447"]
+}], "Text",
+ TextAlignment->-0.5,ExpressionUUID->"c9e26cc6-5acc-4546-9271-c516bb80d206"],
+
+Cell["Implementing this with loops looks like the following:", "Text",ExpressionUUID->"2561a975-f8dd-43f6-a4cd-e5480286883a"],
+
+Cell[BoxData[{
+ RowBox[{"Clear", "[", "x", "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"f", "[", "x_", "]"}], ":=", 
+  RowBox[{
+   RowBox[{"Exp", "[", "x", "]"}], "+", 
+   RowBox[{"3", "*", "x"}]}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"a", "=", "1"}], ";", 
+  RowBox[{"b", "=", "3"}], ";", 
+  RowBox[{"n", "=", "10"}], ";", 
+  RowBox[{"h", "=", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{"b", "-", "a"}], ")"}], "/", "n"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"sum", "=", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"f", "[", "a", "]"}], "+", 
+      RowBox[{"f", "[", "b", "]"}]}], ")"}], "*", 
+    RowBox[{"h", "/", "3"}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Do", "[", 
+  RowBox[{
+   RowBox[{"sum", "=", 
+    RowBox[{"sum", "+", 
+     RowBox[{
+      RowBox[{"f", "[", 
+       RowBox[{"a", "+", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"2", "*", "i"}], "-", "1"}], ")"}], "*", "h"}]}], "]"}], 
+      "*", 
+      RowBox[{"(", 
+       RowBox[{"4", "*", 
+        RowBox[{"h", "/", "3"}]}], ")"}]}]}]}], ",", 
+   RowBox[{"{", 
+    RowBox[{"i", ",", "1", ",", 
+     RowBox[{"n", "/", "2"}]}], "}"}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Do", "[", 
+  RowBox[{
+   RowBox[{"sum", "=", 
+    RowBox[{"sum", "+", 
+     RowBox[{
+      RowBox[{"f", "[", 
+       RowBox[{"a", "+", 
+        RowBox[{"2", "*", "i", "*", "h"}]}], "]"}], "*", 
+      RowBox[{"(", 
+       RowBox[{"2", "*", 
+        RowBox[{"h", "/", "3"}]}], ")"}]}]}]}], ",", 
+   RowBox[{"{", 
+    RowBox[{"i", ",", "1", ",", 
+     RowBox[{
+      RowBox[{"n", "/", "2"}], "-", "1"}]}], "}"}]}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"N", "[", 
+  RowBox[{"sum", ",", "10"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"N", "[", 
+  RowBox[{
+   RowBox[{"Integrate", "[", 
+    RowBox[{
+     RowBox[{"f", "[", "x", "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"x", ",", "a", ",", "b"}], "}"}]}], "]"}], ",", "10"}], 
+  "]"}]}], "Input",
+ CellChangeTimes->{{3.79590611955485*^9, 3.795906143840683*^9}, {
+  3.7959062981861153`*^9, 3.795906316652877*^9}},
+ CellLabel->"In[81]:=",ExpressionUUID->"d0b1b308-d1a1-4e33-afb2-175fc8e81035"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Monte Carlo", "Subsection",ExpressionUUID->"06d7596c-cd16-4078-ae8c-604fe77dfd9a"],
+
+Cell[TextData[{
+ "The ",
+ StyleBox["Monte Carlo",
+  FontSlant->"Italic"],
+ " method is not typically used with the types of problems you will encounter \
+in Calculus classes, but it does have applications when the region of \
+integration is strange. The idea is that the average value of our function \
+over the interval can be expressed as ",
+ Cell[BoxData[
+  FormBox[
+   FractionBox[
+    RowBox[{
+     SubsuperscriptBox["\[Integral]", "a", "b"], 
+     RowBox[{
+      RowBox[{"f", "(", "x", ")"}], 
+      RowBox[{"\[DifferentialD]", "x"}]}]}], 
+    RowBox[{"b", "-", "a"}]], TraditionalForm]],ExpressionUUID->
+  "dc30bb5d-7daf-46d4-a156-22e53dedfae1"],
+ ". The details of this calculation can be found on page 294 of your \
+textbook. The steps to perform in order to approximate the integral are the \
+following:"
+}], "Text",ExpressionUUID->"ba58ec59-4912-46e0-abb9-80e6d116598c"],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ "Generate ",
+ Cell[BoxData[
+  FormBox["n", TraditionalForm]],ExpressionUUID->
+  "00534bd5-c806-471a-bac4-3d287dfc348e"],
+ " random values in the interval ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"[", 
+    RowBox[{"a", ",", "b"}], "]"}], TraditionalForm]],ExpressionUUID->
+  "6352c0d8-e6f3-4ded-adda-97c47000a4f7"],
+ "."
+}], "ItemNumbered",ExpressionUUID->"4e29cfc7-f090-422c-be9f-dfb20d8f8ff8"],
+
+Cell[TextData[{
+ "Evaluate ",
+ Cell[BoxData[
+  FormBox["f", TraditionalForm]],ExpressionUUID->
+  "bc503f98-adc9-4e0e-bb90-5817ff2cd9a8"],
+ " at these random values."
+}], "ItemNumbered",ExpressionUUID->"0ac0b7eb-4917-4dc0-aeab-023faefa0a23"],
+
+Cell[TextData[{
+ "Average these values and then multiply by ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"b", "-", "a"}], TraditionalForm]],ExpressionUUID->
+  "6397462d-4198-4bde-a8cc-9c5b9be9ae61"],
+ "."
+}], "ItemNumbered",ExpressionUUID->"5c0acf67-3e42-400f-bdc3-95c854b7a277"]
+}, Open  ]],
+
+Cell["\<\
+For the same example we've been using thus far, we can implement this as \
+follows:\
+\>", "Text",ExpressionUUID->"0d863a6e-ff6f-4d95-b739-1eefcfcd6e63"],
+
+Cell[BoxData[{
+ RowBox[{"Clear", "[", "x", "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"f", "[", "x_", "]"}], ":=", 
+  RowBox[{
+   RowBox[{"Exp", "[", "x", "]"}], "+", 
+   RowBox[{"3", "*", "x"}]}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"a", "=", "1"}], ";", 
+  RowBox[{"b", "=", "3"}], ";", 
+  RowBox[{"n", "=", "10"}], ";", 
+  RowBox[{"sum", "=", "0"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Do", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"random", "=", 
+     RowBox[{"RandomReal", "[", 
+      RowBox[{"{", 
+       RowBox[{"a", ",", "b"}], "}"}], "]"}]}], ";", "\[IndentingNewLine]", 
+    RowBox[{"sum", "=", 
+     RowBox[{"sum", " ", "+", " ", 
+      RowBox[{"f", "[", "random", "]"}]}]}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{"i", ",", "0", ",", 
+     RowBox[{"n", "-", "1"}]}], "}"}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"sum", "=", 
+   RowBox[{"sum", "*", 
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{"b", "-", "a"}], ")"}], "/", "n"}]}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"N", "[", "sum", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"N", "[", 
+  RowBox[{"Integrate", "[", 
+   RowBox[{
+    RowBox[{"f", "[", "x", "]"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"x", ",", "a", ",", "b"}], "}"}]}], "]"}], "]"}]}], "Input",
+ CellLabel->"In[34]:=",ExpressionUUID->"e3e779db-8a81-40ba-8927-939f01b38ab8"]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{1270, 787},
+WindowMargins->{{67, Automatic}, {Automatic, 0}},
+FrontEndVersion->"12.0 for Mac OS X x86 (64-bit) (April 8, 2019)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 93, 0, 67, "Section",ExpressionUUID->"37db1e9b-4ef5-4406-85cd-aaf1ee689c0a"],
+Cell[CellGroupData[{
+Cell[698, 26, 102, 0, 54, "Subsection",ExpressionUUID->"385d6cd1-5436-454d-96d6-39b2d0d5117d"],
+Cell[803, 28, 296, 9, 35, "Text",ExpressionUUID->"a1709ed3-8fef-464f-984c-fd89bbb23186"],
+Cell[1102, 39, 605, 19, 40, "Text",ExpressionUUID->"2369d3f4-0a79-4696-ad68-473943452ec5"],
+Cell[1710, 60, 811, 26, 35, "Text",ExpressionUUID->"faf0fd0a-a910-45e6-ad74-95b9be6a042b"],
+Cell[2524, 88, 1211, 37, 136, "Input",ExpressionUUID->"20f3e735-9fe7-4adb-a021-d0c631bfcff5"],
+Cell[3738, 127, 534, 12, 81, "Text",ExpressionUUID->"ed4e3659-d4a3-4a83-9611-8e0af517a6fc"],
+Cell[4275, 141, 183, 5, 35, "Text",ExpressionUUID->"b210f9fc-5881-4131-a2d5-e35b5d992eee"],
+Cell[4461, 148, 576, 18, 40, "Text",ExpressionUUID->"6d6fdec4-11ab-4dcc-ab85-55e36c4b933e"],
+Cell[5040, 168, 152, 3, 30, "Input",ExpressionUUID->"cbdc597f-524b-4a87-aa53-b0e3c4b60d83"],
+Cell[5195, 173, 635, 17, 73, "Input",ExpressionUUID->"40c8718d-2b8d-469b-8863-202b3c57da26"],
+Cell[5833, 192, 244, 8, 35, "Text",ExpressionUUID->"c0806990-ecbf-40f9-9a00-b4931ec8b255"],
+Cell[6080, 202, 700, 20, 73, "Input",ExpressionUUID->"14c0d07e-75f9-4e59-9094-4a050a0bc5a6"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[6817, 227, 93, 0, 54, "Subsection",ExpressionUUID->"c5df2016-24df-4f68-a59b-b4afb46bf7af"],
+Cell[6913, 229, 292, 6, 35, "Text",ExpressionUUID->"162c9dcf-2d94-450c-899d-c33fe6230298"],
+Cell[7208, 237, 797, 26, 41, "Text",ExpressionUUID->"fe89413f-e523-46ba-99a7-903a58be5997"],
+Cell[8008, 265, 128, 0, 35, "Text",ExpressionUUID->"9322ec56-5701-476e-9675-a08da7960354"],
+Cell[8139, 267, 1372, 42, 157, "Input",ExpressionUUID->"fa8e097e-45cb-40a7-9ca2-9b2141180adc"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[9548, 314, 91, 0, 54, "Subsection",ExpressionUUID->"39686646-93cc-423c-95cc-8e2153f27ce5"],
+Cell[9642, 316, 257, 5, 35, "Text",ExpressionUUID->"48f91aa1-637b-4e1c-99d2-f03778cdaee7"],
+Cell[9902, 323, 1219, 41, 41, "Text",ExpressionUUID->"c9e26cc6-5acc-4546-9271-c516bb80d206"],
+Cell[11124, 366, 125, 0, 35, "Text",ExpressionUUID->"2561a975-f8dd-43f6-a4cd-e5480286883a"],
+Cell[11252, 368, 2184, 70, 178, "Input",ExpressionUUID->"d0b1b308-d1a1-4e33-afb2-175fc8e81035"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[13473, 443, 88, 0, 54, "Subsection",ExpressionUUID->"06d7596c-cd16-4078-ae8c-604fe77dfd9a"],
+Cell[13564, 445, 881, 21, 94, "Text",ExpressionUUID->"ba58ec59-4912-46e0-abb9-80e6d116598c"],
+Cell[CellGroupData[{
+Cell[14470, 470, 410, 12, 32, "ItemNumbered",ExpressionUUID->"4e29cfc7-f090-422c-be9f-dfb20d8f8ff8"],
+Cell[14883, 484, 240, 6, 32, "ItemNumbered",ExpressionUUID->"0ac0b7eb-4917-4dc0-aeab-023faefa0a23"],
+Cell[15126, 492, 274, 7, 32, "ItemNumbered",ExpressionUUID->"5c0acf67-3e42-400f-bdc3-95c854b7a277"]
+}, Open  ]],
+Cell[15415, 502, 162, 3, 35, "Text",ExpressionUUID->"0d863a6e-ff6f-4d95-b739-1eefcfcd6e63"],
+Cell[15580, 507, 1368, 39, 199, "Input",ExpressionUUID->"e3e779db-8a81-40ba-8927-939f01b38ab8"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
