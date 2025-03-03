@@ -96,4 +96,5 @@ xbslashsp = Asp\d
 xtridisolve = tridisolve(a,b,a,d)
 
 %% Part d)
-fprintf('The condition number of the coefficient matrix = %e\n', condest(A));
+fprintf('The condition number of the coefficient matrix = %e\n',...
+    condest(A));
