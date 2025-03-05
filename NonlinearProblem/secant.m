@@ -12,5 +12,5 @@ while abs(b-a) > eps*abs(b)
     a = b;
     b = b + (b - c)/(f(c)/f(b)-1);
     k = k + 1;
-    disp(sprintf('x%d = %16.14f',k,b))
+    fprintf('x%d = %16.14f\n',k,b)
 end

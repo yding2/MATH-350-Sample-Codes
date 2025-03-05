@@ -12,9 +12,9 @@ while abs(x - xprev) > eps*abs(x)
     if fprime(x) ~= 0
         x = x - f(x)/fprime(x);
     else 
-        disp(sprintf('Newton iteration failed since derivative is zero.\n'))
+        fprintf('Newton iteration failed since derivative is zero.\n\n')
         return
     end
     k = k + 1;
-    disp(sprintf('x%d = %16.14f',k,x))
+    fprintf('x%d = %16.14f\n',k,x)
 end
