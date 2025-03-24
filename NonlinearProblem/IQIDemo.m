@@ -20,7 +20,7 @@ disp('Find a root of the Bessel function J0:')
 J0 = @(x) besselj(0,x);
 disp('Initial guesses are x0 = 0, x1 = 1, x2 = 5')
 [x,iter] = iqi(J0,[0 1 5]);
-disp(sprintf('A root of J0 is x = %f.\nIt was computed in %d iterations.\n',x,iter)) 
+fprintf('A root of J0 is x = %f.\nIt was computed in %d iterations.\n\n',x,iter) 
 
 %% Find the first positive root of the Bessel function $J_0$
 %
@@ -35,5 +35,5 @@ disp(sprintf('A root of J0 is x = %f.\nIt was computed in %d iterations.\n',x,it
 disp('Find the first positive root of the Bessel function J0:')
 disp('Initial guesses are x0 = 1, x1 = 2, x2 = 3')
 [x,iter] = iqi(J0,[1 2 3]);
-disp(sprintf('The first positive root of J0 is x = %f.\nIt was computed in %d iterations.\n',x,iter)) 
+fprintf('The first positive root of J0 is x = %f.\nIt was computed in %d iterations.\n\n',x,iter) 
 

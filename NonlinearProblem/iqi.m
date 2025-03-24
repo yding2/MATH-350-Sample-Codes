@@ -14,5 +14,5 @@ while abs(c-b) > eps*abs(c)
     b = c;
     c = x;
     k = k + 1;
-    fprintf('x%d = %16.14f\n',k,c)
+    fprintf('x%d = %16.14f\n',k+2,c)
 end

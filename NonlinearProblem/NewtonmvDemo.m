@@ -8,7 +8,7 @@
 
 disp('Solving missile intercept problem')
 x0 = [1 1]';
-disp(sprintf('Initial guess: x0 = [%f %f]',x0))
+fprintf('Initial guess: x0 = [%f %f]',x0)
 tol = 1e-8;
 [root,iter] = newtonmv(x0, @missile_f, @missile_j, tol);
 disp(' ')
@@ -23,7 +23,7 @@ disp(' ')
 % Trial 1
 disp('Trial 1 of circle-hyperbola intersection problem')
 x0 = [3 -1.5]';
-disp(sprintf('Initial guess: x0 = [%f %f]',x0))
+fprintf('Initial guess: x0 = [%f %f]',x0)
 tol = 1e-8;
 [root,iter] = newtonmv(x0, @circhyp_f, @circhyp_j, tol);
 disp(' ')
@@ -33,7 +33,7 @@ disp(' ')
 %pause
 disp('Trial 2 of circle-hyperbola intersection problem')
 x0 = [0 3]';
-disp(sprintf('Initial guess: x0 = [%f %f]',x0))
+fprintf('Initial guess: x0 = [%f %f]',x0)
 [root,iter] = newtonmv(x0, @circhyp_f, @circhyp_j, tol);
 disp(' ')
 
@@ -42,7 +42,7 @@ disp(' ')
 %pause
 disp('Trial 3 of circle-hyperbola intersection problem')
 x0 = [-3 1.5]';
-disp(sprintf('Initial guess: x0 = [%f %f]',x0))
+fprintf('Initial guess: x0 = [%f %f]',x0)
 [root,iter] = newtonmv(x0, @circhyp_f, @circhyp_j, tol);
 disp(' ')
 
@@ -51,7 +51,7 @@ disp(' ')
 %pause
 disp('Trial 4 of circle-hyperbola intersection problem')
 x0 = [0 -3]';
-disp(sprintf('Initial guess: x0 = [%f %f]',x0))
+fprintf('Initial guess: x0 = [%f %f]',x0)
 [root,iter] = newtonmv(x0, @circhyp_f, @circhyp_j, tol);
 
 %%

@@ -9,4 +9,4 @@ while norm(fx) > tol
    fx = f(x);
    it = it + 1;
    fprintf('Iteration %d: approx root = [%f,%f]\n', it, x);
-end;
+end

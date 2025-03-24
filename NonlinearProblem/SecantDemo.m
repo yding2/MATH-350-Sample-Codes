@@ -19,7 +19,7 @@ disp('Find a root of the Bessel function J0:')
 J0 = @(x) besselj(0,x);
 disp('Initial guesses are x0 = 0.1, x1 = 0.5')
 [x,iter] = secant(J0,[0.1 0.5]);
-disp(sprintf('A root of J0 is x = %f.\nIt was computed in %d iterations.\n',x,iter)) 
+fprintf('A root of J0 is x = %f.\nIt was computed in %d iterations.\n\n',x,iter) 
 x = [0:.1:30];
 plot(x, besselj(0,x))
 
@@ -36,7 +36,7 @@ plot(x, besselj(0,x))
 disp('Find the first positive root of the Bessel function J0:')
 disp('Initial guesses are x0 = 1, x1 = 4')
 [x,iter] = secant(J0,[1 4]);
-disp(sprintf('The first positive root of J0 is x = %f.\nIt was computed in %d iterations.\n',x,iter)) 
+fprintf('The first positive root of J0 is x = %f.\nIt was computed in %d iterations.\n\n',x,iter) 
 
 %% Compute $\sqrt{2}$ 
 %
@@ -52,4 +52,4 @@ disp('Compute sqrt(2):')
 sqr2 = @(x) x^2-2;
 disp('Initial guesses are x0 = 1, x1 = 2')
 [x,iter] = secant(sqr2,[1 2]);
-disp(sprintf('sqrt(2) = %f was computed in %d iterations.\n',x,iter)) 
+fprintf('sqrt(2) = %f was computed in %d iterations.\n\n',x,iter) 
