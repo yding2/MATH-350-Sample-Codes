@@ -33,7 +33,7 @@ yy = c(1)*xx.^2+c(2)*xx+c(3);
 plot(xx, yy, 'g-', 'LineWidth', 2)
 title('Clean Data')
 disp('Fitting with quadratic polynomial')
-disp(sprintf('p(x) = %3.2fx^2 + %3.2fx + %3.2f',c))
+fprintf('p(x) = %3.2fx^2 + %3.2fx + %3.2f',c)
 hold off
 
 %% Example 2: Fit "noisy" data using a quadratic polynomial
@@ -63,6 +63,6 @@ yy = c(1)*xx.^2+c(2)*xx+c(3);
 plot(xx, yy, 'g-', 'LineWidth', 2)
 title('Noisy Data')
 disp('Fitting with quadratic polynomial')
-disp(sprintf('p(x) = %3.2fx^2 + %3.2fx + %3.2f',c))
+fprintf('p(x) = %3.2fx^2 + %3.2fx + %3.2f',c)
 hold off
 

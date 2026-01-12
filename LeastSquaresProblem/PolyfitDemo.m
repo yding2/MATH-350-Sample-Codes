@@ -24,7 +24,7 @@ u = linspace(9.9,11.1,50);
 % Fit with a degree 2 polynomial
 disp('Fitting with quadratic polynomial')
 p = polyfit(x,y,2)
-disp(sprintf('p(x) = %3.2fx^2 + %3.2fx + %3.2f',p))
+fprintf('p(x) = %3.2fx^2 + %3.2fx + %3.2f',p)
 % evaluate the resulting polynomial
 v = polyval(p,u);
 plot(u, v, 'g-', 'LineWidth', 2)
@@ -47,7 +47,7 @@ u = linspace(9.9,11.1,50);
 % Fit with a degree 2 polynomial
 disp('Fitting with quadratic polynomial')
 p = polyfit(x,y,2);
-disp(sprintf('p(x) = %3.2fx^2 + %3.2fx + %3.2f',p))
+fprintf('p(x) = %3.2fx^2 + %3.2fx + %3.2f',p)
 % evaluate the resulting polynomial
 v = polyval(p,u);
 plot(u, v, 'g-', 'LineWidth', 2)
@@ -59,7 +59,7 @@ title('Noisy Data')
 
 disp('Fitting with quintic polynomial')
 p = polyfit(x,y,5);
-disp(sprintf('p(x) = %3.2fx^5 + %3.2fx^4 + %3.2fx^3 + %3.2fx^2 + %3.2fx + %3.2f',p))
+fprintf('p(x) = %3.2fx^5 + %3.2fx^4 + %3.2fx^3 + %3.2fx^2 + %3.2fx + %3.2f',p)
 % evaluate the resulting polynomial
 v = polyval(p,u);
 plot(u, v, 'r-', 'LineWidth', 2)

@@ -9,7 +9,7 @@
 
 %% Beginning of code
 % Initialize
-clear all
+clear
 close all
 f = @(t,y,mu) [y(2); mu*(1 - y(1)^2)*y(2) - y(1)];
 t0 = 0;
