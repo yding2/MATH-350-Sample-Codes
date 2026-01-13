@@ -17,7 +17,7 @@ disp('Result using double precision')
 for n=0:N
     x = 10^(-n);
     f = sqrt(x^2+1)-1;
-    disp(sprintf('x=%e,  sqrt(x^2+1)-1 = %e',x,f))
+    fprintf('x=%e,  sqrt(x^2+1)-1 = %e\n',x,f)
 end
 
 %% Using double-precision, but fixed
@@ -26,7 +26,7 @@ disp('Result using double precision, but fixed')
 for n=0:N
     x = 10^(-n);
     f = x^2/((sqrt(x^2+1))+1);
-    disp(sprintf('x=%e,  x^2/(sqrt(x^2+1)+1) = %e',x,f))
+    fprintf('x=%e,  x^2/(sqrt(x^2+1)+1) = %e\n',x,f)
 end
 
 
@@ -54,5 +54,5 @@ disp('Result of h(x), but fixed')
 for n=0:N
     x = 10^(-n);
     f = x^2/2;
-    disp(sprintf('x=%e,   1 - cos(x) = %e',x,f))
+    fprintf('x=%e,   1 - cos(x) = %e\n',x,f)
 end
