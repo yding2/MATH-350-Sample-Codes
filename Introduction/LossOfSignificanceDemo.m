@@ -45,7 +45,7 @@ disp('Result of h(x)')
 for n=0:N
     x = 10^(-n);
     h = 1 - cos(x);
-    disp(sprintf('x=%e,  1 - cos(x) = %e',x,h))
+    fprintf('x=%e,  1 - cos(x) = %e\n',x,h)
 end
 
 %% Using double-precision, but fixed

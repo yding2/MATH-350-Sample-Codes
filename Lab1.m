@@ -29,10 +29,12 @@ disp(['Elapsed time: ', num2str(elapsedTime), ' seconds']);
 A = [6 2 3; 2 8 5; 3 5 10];
 [L,U,p] = lutx(A)
 
+%%
 % II. Symmetric positive definite matrix:
 % Use *chol* to find $R$ for $A$
 R = chol(A)
 
+%%
 % III. Banded matrix:
 % a) Please use diag to generate a diagonal matrix with the diagonal 
 % elements from 1 to 10.
